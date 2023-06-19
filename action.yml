@@ -9,7 +9,7 @@ inputs:
     required: true
     description: "The Replicate API token."
   cog_version:
-    description: "The version of Cog to use"
+    description: "The version of Cog to install"
     required: false
     # This version of Cog adds support for `cog run` on non-GPU environments (like GitHub Actions' default runners)
     default: "v0.8.0-beta3"
