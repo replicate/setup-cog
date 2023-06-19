@@ -44,7 +44,7 @@ runs:
           echo $REPLICATE_API_TOKEN | cog login --token-stdin
 
       - name: Run prepush script
-        if: ${{ inputs.prepush_script != "" }}
+        if: ${{ inputs.prepush_script != '' }}
         shell: bash
         run: |
           cog run ${{ inputs.prepush_script }}
