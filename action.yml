@@ -14,9 +14,8 @@ inputs:
     # This version of Cog adds support for `cog run` on non-GPU environments (like GitHub Actions' default runners)
     default: "v0.8.0-beta3"
   prepush_script:
-    description: "A script to `cog run` before pushing to Replicate"
+    description: "Filename of a script to `cog run` before pushing to Replicate, e.g. `script/download-weights`"
     required: false
-    default: "script/download-weights"
 
 runs:
   using: "composite"
