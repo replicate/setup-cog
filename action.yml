@@ -1,28 +1,20 @@
 
-name: Push model to Replicate
-description: Install Cog and push a model to Replicate
+name: Install Cog
+description: Install the Cog command-line tool so you can run, test, and push models to Replicate.
+
 inputs:
-  model_name:
-    required: true
-    description: "The name of the Replicate model to publish, e.g `username/modelname`. The model must already exist on Replicate."
   replicate_api_token:
     required: true
-    description: "The Replicate API token."
+    description: "If present, this token is used to authenticate to Replicate using `cog login` so you can push your model."
   cog_version:
     description: "The version of Cog to install"
     required: false
     # This version of Cog adds support for `cog run` on non-GPU environments (like GitHub Actions' default runners)
     default: "v0.8.0-beta3"
-  prepush_script:
-    description: "Filename of a script to `cog run` before pushing to Replicate, e.g. `script/download-weights`"
-    required: false
 
 runs:
   using: "composite"
   steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-
       - name: Set up Docker buildx
         uses: docker/setup-buildx-action@v2
   
@@ -38,18 +30,9 @@ runs:
 
       - name: Log in to Replicate
         shell: bash
+        if: ${{ inputs.replicate_api_token != '' }}
         env:
           REPLICATE_API_TOKEN: ${{ inputs.replicate_api_token }}
         run: |
+          echo "Found REPLICATE_API_TOKEN in the environment; Authenticating..."
           echo $REPLICATE_API_TOKEN | cog login --token-stdin
-
-      - name: Run prepush script
-        if: ${{ inputs.prepush_script != '' }}
-        shell: bash
-        run: |
-          cog run ${{ inputs.prepush_script }}
-
-      - name: Push to Replicate
-        shell: bash
-        run: |
-          cog push r8.im/${{ inputs.model_name }}
