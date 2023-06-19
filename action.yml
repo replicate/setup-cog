@@ -9,14 +9,9 @@ inputs:
     description: "The version of Cog to use"
     required: false
     default: "v0.8.0-beta3"
-  workflow_runs_on:
-    description: The name of your custom GitHub Actions runner to use
-    required: true
-    default: ubuntu-latest-64-cores
 
 runs:
   using: "composite"
-  runs-on: ${{ inputs.workflow_runs_on }}
   steps:
       - name: Check out code
         uses: actions/checkout@v3
