@@ -1,8 +1,10 @@
 
 name: Install Cog
 description: Install Cog so you can run, test, and push machine learning models to Replicate.
-icon: terminal
-color: gray-dark
+author: replicate
+branding:
+  icon: terminal
+  color: gray-dark
 
 inputs:
   replicate_api_token:
