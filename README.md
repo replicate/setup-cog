@@ -1,8 +1,8 @@
 # cog-action
 
-[Cog](https://github.com/replicate/cog) is an open-source tool that lets you package machine learning models in a standard, production-ready container.
+[Cog](https://github.com/replicate/cog) is an open-source tool that lets you package machine learning models in a standard, production-ready container. To learn more about Cog, visit [cog.run](https://cog.run).
 
-This GitHub Action makes it easy to install Cog on a GitHub-hosted runner so you can run, test, and push machine learning models to Replicate, or to your own infrastructure. This action takes care of setting up prerequisites like Dockerx and NVIDIA's CUDA drivers, so you can focus on building and deploying your models without the headache.
+This repo is a GitHub Action that makes it easy to install Cog on a GitHub-hosted runner so you can run, test, and push machine learning models to Replicate, or to your own infrastructure. This action takes care of setting up prerequisites like Dockerx and NVIDIA's CUDA drivers, so you can focus on building and deploying your models without the headache.
 
 ## Usage
 
