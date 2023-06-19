@@ -5,25 +5,36 @@ inputs:
   model_name:
     required: true
     description: "The name of the Replicate model to publish, e.g `username/modelname`. The model must already exist on Replicate."
+  replicate_api_token:
+    required: true
+    description: "The Replicate API token."
   cog_version:
     description: "The version of Cog to use"
     required: false
+    # This version of Cog adds support for `cog run` on non-GPU environments (like GitHub Actions' default runners)
     default: "v0.8.0-beta3"
+  prepush_script:
+    description: "A script to `cog run` before pushing to Replicate"
+    required: false
+    default: "script/download-weights"
 
 runs:
   using: "composite"
   steps:
       - name: Check out code
         uses: actions/checkout@v3
+        shell: bash
 
       - name: Set up Docker buildx
         uses: docker/setup-buildx-action@v2
+        shell: bash
   
       - name: Install NVIDIA CUDA Toolkit
         uses: Jimver/cuda-toolkit@v0.2.10
+        shell: bash
           
-      # This version of Cog adds support for `cog run` on non-GPU environments (like GitHub Actions' default runners)
       - name: Install Cog
+        shell: bash
         run: |
           sudo curl -o /usr/local/bin/cog -L https://github.com/replicate/cog/releases/download/${{ inputs.cog_version }}/cog_Linux_x86_64
           sudo chmod +x /usr/local/bin/cog
@@ -31,24 +42,15 @@ runs:
 
       - name: Log in to Replicate
         env:
-          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+          REPLICATE_API_TOKEN: ${{ inputs.replicate_api_token }}
         run: |
           echo $REPLICATE_API_TOKEN | cog login --token-stdin
 
-      - name: Download model weights
+      - name: Run prepush script
+        if: ${{ inputs.prepush_script != "" }}
         run: |
-          cog run script/download-weights
+          cog run ${{ inputs.prepush_script }}
 
       - name: Push to Replicate
         run: |
           cog push r8.im/${{ inputs.model_name }}
-
-      - name: Open GitHub issue to notify users
-        uses: dacbd/create-issue-action@main
-        with:
-          token: ${{ github.token }}
-          title: 🚀 New version pushed to Replicate
-          body: |
-            Head's up: @${{ github.actor }} kicked off a workflow that pushed a new version of [${{ inputs.model_name }}](https://replicate.com/${{ inputs.model_name }}/versions) to Replicate!
-
-            Git commit: [${{ github.sha }}](https://github.com/${{github.repository}}/commit/${{github.sha}}).
