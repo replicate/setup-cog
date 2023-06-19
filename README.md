@@ -22,7 +22,7 @@ Now you can run the `cog` CLI in subsequent steps to `cog run`, `cog push`, etc.
 This following inputs can be specified using the `with` keyword:
 
 - `cog_version`: The version of Cog to install. Defaults to `v0.8.0-beta3` (a prerelease version with support for pushing GPU models from runners that don't have a GPU!)
-- `replicate_api_token`: Your Replicate API token. If set, the Action will automatically authenticate to Replicate using `cog login`. Get a token from [replicate.com/account](https://replicate.com/account), then create a repository secret named REPLICATE_API_TOKEN in your GitHub repo's settings.
+- `replicate_api_token`: Your Replicate API token. If set, the Action will automatically authenticate to Replicate using `cog login`. To use this feature, get a token from [replicate.com/account](https://replicate.com/account), then create a repository secret named `REPLICATE_API_TOKEN` in your GitHub repo's settings.
 
 ### Runners
 
@@ -30,7 +30,7 @@ This action works on GitHub's default runners, but **most models require more di
 
 GitHub offers more powerful hosted runners that are easy to set up with just a few clicks, but you'll have to [Sign up for GitHub's Hosted Runners beta](https://github.com/features/github-hosted-runners/signup) before you can use them. Note that these runners are only available on paid Team or Enterprise plans, so you'll need to make sure your model repository is owned by a paid GitHub organization rather than an individual user account.
 
-## Manual Deployment
+## Example: Manual Deployment
 
 Here's an example that allows you to [trigger a workflow run manually](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow) from the Actions tab in your repo:
 
@@ -61,7 +61,7 @@ jobs:
           cog push r8.im/${{ inputs.model_name }}}
 ```
 
-## Continuous Deployment
+## Example: Continuous Deployment
 
 Here's an example that pushes to Replicate whenever your repo's `main` branch is updated:
 
