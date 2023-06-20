@@ -7,7 +7,7 @@ branding:
   color: gray-dark
 
 inputs:
-  replicate_api_token:
+  token:
     required: true
     description: "If present, this token is used to authenticate to Replicate using `cog login` so you can push your model."
   cog_version:
@@ -34,9 +34,9 @@ runs:
 
       - name: Log in to Replicate
         shell: bash
-        if: ${{ inputs.replicate_api_token != '' }}
+        if: ${{ inputs.token != '' }}
         env:
-          REPLICATE_API_TOKEN: ${{ inputs.replicate_api_token }}
+          REPLICATE_API_TOKEN: ${{ inputs.token }}
         run: |
           echo "Found REPLICATE_API_TOKEN in the environment; Authenticating..."
           echo $REPLICATE_API_TOKEN | cog login --token-stdin
