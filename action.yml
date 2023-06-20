@@ -10,7 +10,7 @@ inputs:
   token:
     required: true
     description: "If present, this token is used to authenticate to Replicate using `cog login` so you can push your model."
-  cog_version:
+  cog-version:
     description: "The version of Cog to install"
     required: false
     # This version of Cog adds support for `cog run` on non-GPU environments (like GitHub Actions' default runners)
@@ -28,7 +28,7 @@ runs:
       - name: Install Cog
         shell: bash
         run: |
-          sudo curl -o /usr/local/bin/cog -L https://github.com/replicate/cog/releases/download/${{ inputs.cog_version }}/cog_Linux_x86_64
+          sudo curl -o /usr/local/bin/cog -L https://github.com/replicate/cog/releases/download/${{ inputs.cog-version }}/cog_Linux_x86_64
           sudo chmod +x /usr/local/bin/cog
           cog --version
 

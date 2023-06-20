@@ -21,7 +21,7 @@ Now you can run the `cog` CLI in subsequent steps to `cog run`, `cog push`, etc.
 
 This following inputs can be specified using the `with` keyword:
 
-- `cog_version`: The version of Cog to install. Defaults to `v0.8.0-beta3` (a prerelease version with support for pushing GPU models from runners that don't have a GPU!)
+- `cog-version`: The version of Cog to install. Defaults to `v0.8.0-beta3` (a prerelease version with support for pushing GPU models from runners that don't have a GPU!)
 - `token`: Your Replicate API token. If set, the Action will automatically authenticate to Replicate using `cog login`. To use this feature, get a token from [replicate.com/account](https://replicate.com/account), then create a repository secret named `REPLICATE_API_TOKEN` in your GitHub repo's settings.
 
 
