@@ -10,7 +10,7 @@ Add a step to your workflow that uses this action:
 
 ```yml
 - name: Install Cog
-  uses: replicate/setup-cog@main
+  uses: replicate/setup-cog@v1
   with:
     token: ${{ secrets.REPLICATE_API_TOKEN }}
 ```
@@ -47,7 +47,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Cog
-        uses: replicate/setup-cog@main
+        uses: replicate/setup-cog@v1
         with:
           token: ${{ secrets.REPLICATE_API_TOKEN }}
 
@@ -76,7 +76,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Cog
-        uses: replicate/setup-cog@main
+        uses: replicate/setup-cog@v1
         with:
           token: ${{ secrets.REPLICATE_API_TOKEN }}
 
@@ -108,5 +108,5 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Cog
-        uses: replicate/setup-cog@main
+        uses: replicate/setup-cog@v1
 ```
