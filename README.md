@@ -1,4 +1,4 @@
-# cog-action
+# setup-cog
 
 [Cog](https://github.com/replicate/cog) is an open-source tool that lets you package machine learning models in a standard, production-ready container. To learn more about Cog, visit [cog.run](https://cog.run).
 
@@ -10,7 +10,7 @@ Add a step to your workflow that uses this action:
 
 ```yml
 - name: Install Cog
-  uses: replicate/cog-action@main
+  uses: replicate/setup-cog@main
   with:
     token: ${{ secrets.REPLICATE_API_TOKEN }}
 ```
@@ -47,7 +47,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Cog
-        uses: replicate/cog-action@main
+        uses: replicate/setup-cog@main
         with:
           token: ${{ secrets.REPLICATE_API_TOKEN }}
 
@@ -76,7 +76,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Cog
-        uses: replicate/cog-action@main
+        uses: replicate/setup-cog@main
         with:
           token: ${{ secrets.REPLICATE_API_TOKEN }}
 
@@ -108,5 +108,5 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Cog
-        uses: replicate/cog-action@main
+        uses: replicate/setup-cog@main
 ```
