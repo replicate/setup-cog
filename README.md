@@ -9,7 +9,7 @@ This repo is a GitHub Action that makes it easy to install Cog on a GitHub-hoste
 Add a step to your workflow that uses this action:
 
 ```yml
-- name: Install Cog
+- name: Setup Cog
   uses: replicate/setup-cog@v1
   with:
     token: ${{ secrets.REPLICATE_API_TOKEN }}
@@ -46,7 +46,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Install Cog
+      - name: Setup Cog
         uses: replicate/setup-cog@v1
         with:
           token: ${{ secrets.REPLICATE_API_TOKEN }}
@@ -75,7 +75,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Install Cog
+      - name: Setup Cog
         uses: replicate/setup-cog@v1
         with:
           token: ${{ secrets.REPLICATE_API_TOKEN }}
@@ -107,6 +107,6 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Install Cog
+      - name: Setup Cog
         uses: replicate/setup-cog@v1
 ```
