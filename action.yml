@@ -1,5 +1,5 @@
 
-name: Install Cog
+name: Setup Cog
 description: Install Cog so you can run, test, and push machine learning models to Replicate.
 author: replicate
 branding:
