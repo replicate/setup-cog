@@ -24,11 +24,6 @@ This following inputs can be specified using the `with` keyword:
 - `cog_version`: The version of Cog to install. Defaults to `v0.8.0-beta3` (a prerelease version with support for pushing GPU models from runners that don't have a GPU!)
 - `replicate_api_token`: Your Replicate API token. If set, the Action will automatically authenticate to Replicate using `cog login`. To use this feature, get a token from [replicate.com/account](https://replicate.com/account), then create a repository secret named `REPLICATE_API_TOKEN` in your GitHub repo's settings.
 
-### Runners
-
-This action works on GitHub's default runners, but **most models require more disk space and memory** than is available on the default runner. 
-
-GitHub offers more powerful hosted runners that are easy to set up with just a few clicks, but you'll have to [Sign up for GitHub's Hosted Runners beta](https://github.com/features/github-hosted-runners/signup) before you can use them. Note that these runners are only available on paid Team or Enterprise plans, so you'll need to make sure your model repository is owned by a paid GitHub organization rather than an individual user account.
 
 ## Example: Manual Deployment
 
@@ -88,4 +83,30 @@ jobs:
       - name: Push to Replicate
         run: |
           cog push r8.im/zeke/hello-world
+```
+
+## Limitations
+
+GitHub's hosted runners don't have GPUs (yet?), so you can't currently run GPU models unless you [self-host your own runner](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners).
+
+That said, Cog can still be used to `build` and `push` GPU models, even from a Linux environment that doesn't have a GPU. So you can push GPU models to Replicate, but you can't run them as part of your workflow.
+
+### Using custom hosted runners
+
+This action works on GitHub's default runners, but **most models require more disk space and memory** than is available on the default runner. 
+
+GitHub offers more powerful hosted runners that are easy to set up with just a few clicks, but you'll have to [Sign up for GitHub's Hosted Runners beta](https://github.com/features/github-hosted-runners/signup) before you can use them. Note that these runners are only available on paid Team or Enterprise plans, so you'll need to make sure your model repository is owned by a paid GitHub organization rather than an individual user account.
+
+Once you've set up a hosted runner, you can use it by adding the [`runs-on`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on) key to your job:
+
+```yml
+jobs:
+  do_cog_stuff:
+    runs-on: my-fancy-runner-with-more-disk-and-memory
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Install Cog
+        uses: replicate/cog-action@main
 ```
