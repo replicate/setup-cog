@@ -13,6 +13,12 @@ Add a step to your workflow that uses this action:
   uses: replicate/setup-cog@v1
   with:
     token: ${{ secrets.REPLICATE_API_TOKEN }}
+
+- name: Download weights
+  run: cog run script/download-weights
+
+- name: Push to Replicate
+  run: cog push r8.im/zeke/hello-world
 ```
 
 Now you can run the `cog` CLI in subsequent steps to `cog run`, `cog push`, etc.
