@@ -15,6 +15,11 @@ inputs:
     required: false
     # This version of Cog adds support for `cog run` on non-GPU environments (like GitHub Actions' default runners)
     default: "v0.8.0-beta3"
+  install-cuda:
+    description: "Install NVIDIA CUDA Toolkit to build GPU-bound containers."
+    required: false
+    default: 'true'
+
 
 runs:
   using: "composite"
@@ -23,6 +28,7 @@ runs:
         uses: docker/setup-buildx-action@ecf95283f03858871ff00b787d79c419715afc34 # v2.7.0
   
       - name: Install NVIDIA CUDA Toolkit
+        if: ${{ inputs.install-cuda == 'true' }}
         uses: Jimver/cuda-toolkit@6974ecc945579a89135a1e1d9eac96ec361a1171 # v0.2.10
 
       - name: Setup Cog
