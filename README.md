@@ -61,7 +61,7 @@ jobs:
 
       - name: Push to Replicate
         run: |
-          cog push r8.im/${{ inputs.model_name }}}
+          cog push r8.im/${{ inputs.model_name }}
 ```
 
 ## Example: Continuous Deployment
