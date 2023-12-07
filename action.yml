@@ -13,8 +13,7 @@ inputs:
   cog-version:
     description: "The version of Cog to install"
     required: false
-    # This version of Cog adds support for `cog run` on non-GPU environments (like GitHub Actions' default runners)
-    default: "v0.8.0-beta3"
+    default: "v0.8.6"
   install-cuda:
     description: "Install NVIDIA CUDA Toolkit to build GPU-bound containers."
     required: false
