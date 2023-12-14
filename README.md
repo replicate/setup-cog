@@ -4,6 +4,8 @@
 
 This repo is a GitHub Action that makes it easy to install Cog on a GitHub-hosted runner so you can run, test, and push machine learning models to Replicate, or to your own infrastructure. This action takes care of setting up prerequisites like Dockerx and NVIDIA's CUDA drivers, so you can focus on building and deploying your models without the headache.
 
+**⚡️ [Cog supports building and pushing GPU models from machines that don't have GPUs](https://github.com/replicate/cog/pull/1069) ⚡️**. So in many cases you can use this action to push your GPU model to Replicate, even if you're using a GitHub-hosted runner that doesn't have a GPU.
+
 ## Usage
 
 Add a step to your workflow that uses this action:
@@ -29,7 +31,7 @@ This following inputs can be specified using the `with` keyword:
 
 - `cog-version`: The version of Cog to install in the form `vX.Y.Z`. See [Cog releases] for a list of available versions. Defaults to `v0.8.0-beta3` (a prerelease version with support for pushing GPU models from runners that don't have a GPU!)
 - `token`: Your Replicate API token. If set, the Action will automatically authenticate to Replicate using `cog login`. To use this feature, get a token from [replicate.com/account](https://replicate.com/account), then create a repository secret named `REPLICATE_API_TOKEN` in your GitHub repo's settings.
-
+- `install-cuda`: Install NVIDIA CUDA Toolkit. Defaults to `true`. This flag can be set to `false` when building Cog containers that don't require GPU.
 
 ## Example: Manual Deployment
 
