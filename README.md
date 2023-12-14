@@ -29,7 +29,7 @@ Now you can run the `cog` CLI in subsequent steps to `cog run`, `cog push`, etc.
 
 This following inputs can be specified using the `with` keyword:
 
-- `cog-version`: The version of Cog to install in the form `vX.Y.Z`. See [Cog releases] for a list of available versions. Defaults to `v0.8.0-beta3` (a prerelease version with support for pushing GPU models from runners that don't have a GPU!)
+- `cog-version`: The version of Cog to install in the form `vX.Y.Z`. See [Cog releases] for a list of available versions. Defaults to `v0.8.6`.
 - `token`: Your Replicate API token. If set, the Action will automatically authenticate to Replicate using `cog login`. To use this feature, get a token from [replicate.com/account](https://replicate.com/account), then create a repository secret named `REPLICATE_API_TOKEN` in your GitHub repo's settings.
 - `install-cuda`: Install NVIDIA CUDA Toolkit. Defaults to `true`. This flag can be set to `false` when building Cog containers that don't require GPU.
 
@@ -61,7 +61,7 @@ jobs:
 
       - name: Push to Replicate
         run: |
-          cog push r8.im/${{ inputs.model_name }}}
+          cog push r8.im/${{ inputs.model_name }}
 ```
 
 ## Example: Continuous Deployment
