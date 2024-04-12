@@ -17,9 +17,9 @@ To publish a new release, run the following in your local checkout:
 ```sh
 git checkout main
 git fetch --all --tags
-git tag vX.Y.Z    # specific SemVer version
-git tag vX        # vague major version identifier for use workflow files
-git push --tags
+git tag vX.Y.Z        # specific SemVer version
+git tag vX --force    # vague major version identifier for workflows that reference this action
+git push --tags --force
 ```
 
 Then visit [github.com/replicate/setup-cog/tags](https://github.com/replicate/setup-cog/tags) to see the tags.
