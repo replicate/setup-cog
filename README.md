@@ -29,9 +29,42 @@ Now you can run the `cog` CLI in subsequent steps to `cog run`, `cog push`, etc.
 
 This following inputs can be specified using the `with` keyword:
 
-- `cog-version`: The version of Cog to install in the form `vX.Y.Z`. See [Cog releases] for a list of available versions. Defaults to `v0.8.6`.
-- `token`: Your Replicate API token. If set, the Action will automatically authenticate to Replicate using `cog login`. To use this feature, get a token from [replicate.com/account](https://replicate.com/account), then create a repository secret named `REPLICATE_API_TOKEN` in your GitHub repo's settings.
-- `install-cuda`: Install NVIDIA CUDA Toolkit. Defaults to `true`. This flag can be set to `false` when building Cog containers that don't require GPU.
+#### `cog-version`
+
+The version of Cog to install in the form `vX.Y.Z`. See [Cog releases](https://github.com/replicate/cog/releases) for a list of available versions.
+
+Defaults to `v0.8.6`.
+
+```yml
+- name: Setup Cog
+  uses: replicate/setup-cog@v1
+  with:
+    cog-version: "v0.9.5"
+```
+
+#### `token`
+
+Your Replicate API token. If set, the Action will automatically authenticate to Replicate using `cog login`. To use this feature, create a token at [replicate.com/account/api-tokens](https://replicate.com/account/api-tokens), copy it, then paste it into a [repository secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) named `REPLICATE_API_TOKEN` in your GitHub repo's settings.
+
+```yml
+- name: Setup Cog
+  uses: replicate/setup-cog@v1
+  with:
+    token: ${{ secrets.REPLICATE_API_TOKEN }}
+```
+
+#### `install-cuda`
+
+Install NVIDIA CUDA Toolkit. Defaults to `true`. This flag can be set to `false` when building Cog containers that don't require GPU.
+
+[Cog supports building and pushing GPU models from machines that don't have GPUs](https://github.com/replicate/cog/pull/1069), so in many cases you canpush your GPU model to Replicate without installing the toolkit.
+
+```yml
+- name: Setup Cog
+  uses: replicate/setup-cog@v1
+  with:
+    install-cuda: false
+```
 
 ## Example: Manual Deployment
 
