@@ -39,6 +39,29 @@ runs:
         with:
           commitish: ${{ inputs.cog-commitish }}
 
+      - name: Checkout Cog repository
+        if: ${{ inputs.cog-commitish != '' }}
+        uses: actions/checkout@v4
+        with:
+          repository: 'replicate/cog'
+          fetch-depth: 0
+
+      - name: Install Go
+        if: ${{ inputs.cog-commitish != '' }}
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+
+      - name: Build Cog
+        if: ${{ inputs.cog-commitish != '' }}
+        shell: bash
+        run: make cog
+
+      - name: Add Cog to PATH
+        if: ${{ inputs.cog-commitish != '' }}
+        shell: bash
+        run: echo "${{ github.workspace }}" >> $GITHUB_PATH
+
       - name: Download an existing Cog version
         if: ${{ inputs.cog-commitish == '' }}
         shell: bash
