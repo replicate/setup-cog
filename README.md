@@ -42,6 +42,21 @@ Defaults to `v0.8.6`.
     cog-version: "v0.9.5"
 ```
 
+#### `cog-commitish`
+
+The commitish (branch, tag, or commit) of Cog to build from source using [replicate/build-cog](https://github.com/replicate/build-cog).
+
+If this is set, the `cog-version` input is ignored.
+
+Uses 
+
+```yml
+- name: Setup Cog
+  uses: replicate/setup-cog@v1
+  with:
+    cog-commitish: "3cf1e44" # can be a commit SHA, branch name, or tag name
+```
+
 #### `token`
 
 Your Replicate API token. If set, the Action will automatically authenticate to Replicate using `cog login`. To use this feature, create a token at [replicate.com/account/api-tokens](https://replicate.com/account/api-tokens), copy it, then paste it into a [repository secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) named `REPLICATE_API_TOKEN` in your GitHub repo's settings.

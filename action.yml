@@ -14,11 +14,14 @@ inputs:
     description: "The version of Cog to install"
     required: false
     default: "v0.8.6"
+  cog-commitish:
+    description: "The commitish (branch, tag, or commit) of Cog to build from source. If this is set, the `cog-version` input is ignored."
+    required: false
+    default: ''
   install-cuda:
     description: "Install NVIDIA CUDA Toolkit to build GPU-bound containers."
     required: false
     default: 'true'
-
 
 runs:
   using: "composite"
@@ -30,7 +33,14 @@ runs:
         if: ${{ inputs.install-cuda == 'true' }}
         uses: Jimver/cuda-toolkit@dc0ca7bb29c5a92f7a963d3d5c93f8d59765136a # v0.2.14
 
-      - name: Setup Cog
+      - name: Build Cog from source
+        if: ${{ inputs.cog-commitish != '' }}
+        uses: replicate/build-cog@v1
+        with:
+          commitish: ${{ inputs.cog-commitish }}
+
+      - name: Download an existing Cog version
+        if: ${{ inputs.cog-commitish == '' }}
         shell: bash
         run: |
           sudo curl -o /usr/local/bin/cog -L https://github.com/replicate/cog/releases/download/${{ inputs.cog-version }}/cog_Linux_x86_64
