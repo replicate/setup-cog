@@ -33,11 +33,10 @@ runs:
         if: ${{ inputs.install-cuda == 'true' }}
         uses: Jimver/cuda-toolkit@dc0ca7bb29c5a92f7a963d3d5c93f8d59765136a # v0.2.14
 
-      - name: Build Cog from source
+      - name: Capture current working directory
         if: ${{ inputs.cog-commitish != '' }}
-        uses: replicate/build-cog@v1
-        with:
-          commitish: ${{ inputs.cog-commitish }}
+        shell: bash
+        run: echo "ORIGINAL_DIR=$(pwd)" >> $GITHUB_ENV
 
       - name: Checkout Cog repository
         if: ${{ inputs.cog-commitish != '' }}
@@ -61,6 +60,11 @@ runs:
         if: ${{ inputs.cog-commitish != '' }}
         shell: bash
         run: echo "${{ github.workspace }}" >> $GITHUB_PATH
+
+      - name: Change back to the original directory
+        if: ${{ inputs.cog-commitish != '' }}
+        shell: bash
+        run: cd ${{ env.ORIGINAL_DIR }}
 
       - name: Download an existing Cog version
         if: ${{ inputs.cog-commitish == '' }}
