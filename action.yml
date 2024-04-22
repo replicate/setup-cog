@@ -37,7 +37,7 @@ runs:
         if: ${{ inputs.cog-commitish != '' }}
         uses: replicate/build-cog@main
         with:
-          commitish: {{ inputs.cog-commitish }}
+          commitish: ${{ inputs.cog-commitish }}
 
       - name: Download a prebuilt release of Cog
         if: ${{ inputs.cog-commitish == '' }}
