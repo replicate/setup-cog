@@ -50,7 +50,7 @@ runs:
         if: ${{ inputs.cog-commitish != '' }}
         uses: actions/setup-go@v5
         with:
-          go-version-file: 'go.mod'
+          go-version-file: 'cog-repo/go.mod'
 
       - name: Build Cog
         if: ${{ inputs.cog-commitish != '' }}
