@@ -33,31 +33,13 @@ runs:
         if: ${{ inputs.install-cuda == 'true' }}
         uses: Jimver/cuda-toolkit@dc0ca7bb29c5a92f7a963d3d5c93f8d59765136a # v0.2.14
 
-      - name: Checkout Cog repository
+      - name: Build Cog from source
         if: ${{ inputs.cog-commitish != '' }}
-        uses: actions/checkout@v4
+        uses: replicate/build-cog@main
         with:
-          repository: 'replicate/cog'
-          fetch-depth: 0
-          path: cog-repo
+          commitish: {{ inputs.cog-commitish }}
 
-      - name: Install Go
-        if: ${{ inputs.cog-commitish != '' }}
-        uses: actions/setup-go@v5
-        with:
-          go-version-file: 'cog-repo/go.mod'
-
-      - name: Build Cog
-        if: ${{ inputs.cog-commitish != '' }}
-        shell: bash
-        run: cd cog-repo && make cog
-
-      - name: Add Cog to PATH
-        if: ${{ inputs.cog-commitish != '' }}
-        shell: bash
-        run: echo "${{ github.workspace }}/cog-repo" >> $GITHUB_PATH
-
-      - name: Download an existing Cog version
+      - name: Download a prebuilt release of Cog
         if: ${{ inputs.cog-commitish == '' }}
         shell: bash
         run: |
