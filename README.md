@@ -63,7 +63,7 @@ Install NVIDIA CUDA Toolkit. Defaults to `true`. This flag can be set to `false`
 - name: Setup Cog
   uses: replicate/setup-cog@v1
   with:
-    install-cuda: false
+    install-cuda: true
 ```
 
 ## Example: Manual Deployment
