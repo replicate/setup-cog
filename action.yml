@@ -41,7 +41,7 @@ runs:
 
       - name: Log in to Replicate
         shell: bash
-        if: ${{ inputs.token != '' }}
+        if: inputs.token != ''
         env:
           REPLICATE_API_TOKEN: ${{ inputs.token }}
         run: |
