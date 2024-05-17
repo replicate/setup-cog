@@ -55,9 +55,9 @@ Your Replicate API token. If set, the Action will automatically authenticate to 
 
 #### `install-cuda`
 
-Install NVIDIA CUDA Toolkit. Defaults to `true`. This flag can be set to `false` when building Cog containers that don't require GPU.
+Install NVIDIA CUDA Toolkit. Defaults to `false`, because most Cog models can be built and pushed without requiring CUDA. [Cog supports building and pushing GPU models from machines that don't have GPUs](https://github.com/replicate/cog/pull/1069), so in many cases you can push your GPU model to Replicate without installing the toolkit.
 
-[Cog supports building and pushing GPU models from machines that don't have GPUs](https://github.com/replicate/cog/pull/1069), so in many cases you canpush your GPU model to Replicate without installing the toolkit.
+If you need CUDA installed, set this input to `true`:
 
 ```yml
 - name: Setup Cog
