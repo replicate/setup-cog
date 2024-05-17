@@ -13,12 +13,14 @@ inputs:
   cog-version:
     description: "The version of Cog to install"
     required: false
-    default: "v0.8.6"
+    default: "v0.9.7"
   install-cuda:
     description: "Install NVIDIA CUDA Toolkit to build GPU-bound containers."
     required: false
-    default: 'true'
-
+    default: 'false'
+    options:
+      - true
+      - false
 
 runs:
   using: "composite"
@@ -27,7 +29,7 @@ runs:
         uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3.3.0
   
       - name: Install NVIDIA CUDA Toolkit
-        if: ${{ inputs.install-cuda == 'true' }}
+        if: inputs.install-cuda == true || inputs.install-cuda == 'true'
         uses: Jimver/cuda-toolkit@dc0ca7bb29c5a92f7a963d3d5c93f8d59765136a # v0.2.14
 
       - name: Setup Cog
@@ -39,7 +41,7 @@ runs:
 
       - name: Log in to Replicate
         shell: bash
-        if: ${{ inputs.token != '' }}
+        if: inputs.token != ''
         env:
           REPLICATE_API_TOKEN: ${{ inputs.token }}
         run: |

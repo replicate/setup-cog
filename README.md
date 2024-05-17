@@ -12,7 +12,7 @@ Add a step to your workflow that uses this action:
 
 ```yml
 - name: Setup Cog
-  uses: replicate/setup-cog@v1
+  uses: replicate/setup-cog@v2
   with:
     token: ${{ secrets.REPLICATE_API_TOKEN }}
 
@@ -33,13 +33,13 @@ This following inputs can be specified using the `with` keyword:
 
 The version of Cog to install in the form `vX.Y.Z`. See [Cog releases](https://github.com/replicate/cog/releases) for a list of available versions.
 
-Defaults to `v0.8.6`.
+Defaults to `v0.9.7`.
 
 ```yml
 - name: Setup Cog
-  uses: replicate/setup-cog@v1
+  uses: replicate/setup-cog@v2
   with:
-    cog-version: "v0.9.5"
+    cog-version: "v0.9.8-alpha"
 ```
 
 #### `token`
@@ -48,7 +48,7 @@ Your Replicate API token. If set, the Action will automatically authenticate to 
 
 ```yml
 - name: Setup Cog
-  uses: replicate/setup-cog@v1
+  uses: replicate/setup-cog@v2
   with:
     token: ${{ secrets.REPLICATE_API_TOKEN }}
 ```
@@ -61,9 +61,9 @@ Install NVIDIA CUDA Toolkit. Defaults to `true`. This flag can be set to `false`
 
 ```yml
 - name: Setup Cog
-  uses: replicate/setup-cog@v1
+  uses: replicate/setup-cog@v2
   with:
-    install-cuda: false
+    install-cuda: true
 ```
 
 ## Example: Manual Deployment
@@ -88,7 +88,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Cog
-        uses: replicate/setup-cog@v1
+        uses: replicate/setup-cog@v2
         with:
           token: ${{ secrets.REPLICATE_API_TOKEN }}
 
@@ -117,7 +117,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Cog
-        uses: replicate/setup-cog@v1
+        uses: replicate/setup-cog@v2
         with:
           token: ${{ secrets.REPLICATE_API_TOKEN }}
 
@@ -149,5 +149,5 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Cog
-        uses: replicate/setup-cog@v1
+        uses: replicate/setup-cog@v2
 ```
