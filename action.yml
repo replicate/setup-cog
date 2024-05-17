@@ -13,7 +13,7 @@ inputs:
   cog-version:
     description: "The version of Cog to install"
     required: false
-    default: "v0.9.7"
+    default: "v0.9.8"
   install-cuda:
     description: "Install NVIDIA CUDA Toolkit to build GPU-bound containers."
     required: false

@@ -33,13 +33,13 @@ This following inputs can be specified using the `with` keyword:
 
 The version of Cog to install in the form `vX.Y.Z`. See [Cog releases](https://github.com/replicate/cog/releases) for a list of available versions.
 
-Defaults to `v0.9.7`.
+Defaults to `v0.9.8`.
 
 ```yml
 - name: Setup Cog
   uses: replicate/setup-cog@v2
   with:
-    cog-version: "v0.9.8-alpha"
+    cog-version: "v0.9.9-alpha"
 ```
 
 #### `token`
