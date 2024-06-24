@@ -32,7 +32,7 @@ runs:
   
       - name: Install NVIDIA CUDA Toolkit
         if: inputs.install-cuda == true || inputs.install-cuda == 'true'
-        uses: Jimver/cuda-toolkit@dc0ca7bb29c5a92f7a963d3d5c93f8d59765136a # v0.2.14
+        uses: Jimver/cuda-toolkit@9b295696791d75d658d8de64c4a85097ad8abeaf # v0.2.16
 
       - name: Setup Cog
         shell: bash
