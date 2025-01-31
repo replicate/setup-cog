@@ -14,7 +14,7 @@ Add a step to your workflow that uses this action:
 - name: Setup Cog
   uses: replicate/setup-cog@v2
   with:
-    token: ${{ secrets.REPLICATE_API_TOKEN }}
+    token: ${{ secrets.REPLICATE_CLI_AUTH_TOKEN }}
 
 - name: Download weights
   run: cog run script/download-weights
@@ -44,13 +44,13 @@ Defaults to `v0.9.8`.
 
 #### `token`
 
-Your Replicate API token. If set, the Action will automatically authenticate to Replicate using `cog login`. To use this feature, create a token at [replicate.com/account/api-tokens](https://replicate.com/account/api-tokens), copy it, then paste it into a [repository secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) named `REPLICATE_API_TOKEN` in your GitHub repo's settings.
+Your Replicate CLI auth token. If set, the Action will automatically authenticate to Replicate using `cog login`. To use this feature, get your token at [replicate.com/auth/token](https://replicate.com/auth/token), copy it, then paste it into a [repository secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) named `REPLICATE_CLI_AUTH_TOKEN` in your GitHub repo's settings.
 
 ```yml
 - name: Setup Cog
   uses: replicate/setup-cog@v2
   with:
-    token: ${{ secrets.REPLICATE_API_TOKEN }}
+    token: ${{ secrets.REPLICATE_CLI_AUTH_TOKEN }}
 ```
 
 #### `install-cuda`
@@ -90,7 +90,7 @@ jobs:
       - name: Setup Cog
         uses: replicate/setup-cog@v2
         with:
-          token: ${{ secrets.REPLICATE_API_TOKEN }}
+          token: ${{ secrets.REPLICATE_CLI_AUTH_TOKEN }}
 
       - name: Push to Replicate
         run: |
@@ -119,7 +119,7 @@ jobs:
       - name: Setup Cog
         uses: replicate/setup-cog@v2
         with:
-          token: ${{ secrets.REPLICATE_API_TOKEN }}
+          token: ${{ secrets.REPLICATE_CLI_AUTH_TOKEN }}
 
       - name: Push to Replicate
         run: |
@@ -134,7 +134,7 @@ That said, Cog can still be used to `build` and `push` GPU models, even from a L
 
 ### Using custom hosted runners
 
-This action works on GitHub's default runners, but **most models require more disk space and memory** than is available on the default runner. 
+This action works on GitHub's default runners, but **most models require more disk space and memory** than is available on the default runner.
 
 GitHub offers more powerful hosted runners that are easy to set up with just a few clicks, but you'll have to [Sign up for GitHub's Hosted Runners beta](https://github.com/features/github-hosted-runners/signup) before you can use them. Note that these runners are only available on paid Team or Enterprise plans, so you'll need to make sure your model repository is owned by a paid GitHub organization rather than an individual user account.
 
